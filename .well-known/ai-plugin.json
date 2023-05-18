@@ -9,11 +9,11 @@
     },
     "api": {
       "type": "openapi",
-      "url": "https://a029-184-94-121-114.ngrok-free.app/openapi.yaml",
+      "url": "https://askmfm.writelikeshaan.com/openapi.yaml",
       "is_user_authenticated": false
     },
-    "logo_url": "https://a029-184-94-121-114.ngrok-free.app/logo.png",
+    "logo_url": "https:/askmfm.writelikeshaan.com/logo.png",
     "contact_email": "aliaadil2002@gmail.com",
-    "legal_info_url": "https://a029-184-94-121-114.ngrok-free.app/legal"
+    "legal_info_url": "https://askmfm.writelikeshaan.com/legal"
   }
   
