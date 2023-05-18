@@ -3,7 +3,6 @@ import quart
 import quart_cors
 from quart import request
 import os
-import openai
 from operand.client import OperandServiceClient, SearchRequest
 from dotenv import load_dotenv
 
@@ -11,7 +10,6 @@ load_dotenv()
 
 app = quart_cors.cors(quart.Quart(__name__), allow_origin="https://chat.openai.com")
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
 operandClient = OperandServiceClient("https://mcp.operand.ai", os.getenv("OPERAND_API_KEY"))
 
 def operand_search_relevant_info(question):
@@ -83,4 +81,4 @@ async def get_relevant_info():
         return quart.Response(response=json.dumps({'status': 'error', 'message': str(e)}), status=400)
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5003)
+    app.run(debug=True, host="0.0.0.0", port=os.getenv("PORT"))
