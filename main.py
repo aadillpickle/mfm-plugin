@@ -81,9 +81,7 @@ async def get_relevant_info():
         request_data = await request.get_json(force=True)
         question = request_data['question']
         relevant_info = operand_search_relevant_info(question)
-        posthog.capture('relevant_info_requested', {
-            'question': question
-        })
+        posthog.capture("question", question)
         return quart.Response(response=json.dumps({'status': 'success', 'relevant_info': relevant_info}), status=200)
     except Exception as e:
         print(str(e))
