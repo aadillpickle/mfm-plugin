@@ -1,7 +1,7 @@
 import json
 import quart
 import quart_cors
-from quart import request
+from quart import request, render_template
 import os
 from operand.client import OperandServiceClient, SearchRequest
 from dotenv import load_dotenv
@@ -37,7 +37,6 @@ def operand_search_relevant_info(question):
         podcast_link = ""
         with open('titles_and_links.json') as f:
             data = json.load(f)
-            #check if the first 20 chars of the podcast title match the first 20 chars of any of the json keys
             for key in data.keys():
                 if podcast_title[:20] == key[:20]:
                     podcast_link = data[key]
@@ -51,7 +50,7 @@ def operand_search_relevant_info(question):
 
 @app.route('/', methods=['GET'])
 async def hello():
-    return 'Hello, World!'
+    return await render_template('index.html')
 
 @app.get("/.well-known/ai-plugin.json")
 async def plugin_manifest():
@@ -71,6 +70,15 @@ async def openapi_spec():
 async def plugin_logo():
     filename = 'logo.png'
     return await quart.send_file(filename, mimetype='image/png')
+
+@app.get("/plugin-example.png")
+async def plugin_example():
+    filename = 'plugin-example.png'
+    return await quart.send_file(filename, mimetype='image/png')
+
+@app.get("/legal")
+async def legal():
+    return await render_template('legal.html')
 
 @app.route('/relevant-info', methods=['POST'])
 async def get_relevant_info():
