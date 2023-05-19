@@ -71,11 +71,6 @@ async def plugin_logo():
     filename = 'logo.png'
     return await quart.send_file(filename, mimetype='image/png')
 
-@app.get("/plugin-example.png")
-async def plugin_example():
-    filename = 'plugin-example.png'
-    return await quart.send_file(filename, mimetype='image/png')
-
 @app.get("/legal")
 async def legal():
     return await render_template('legal.html')

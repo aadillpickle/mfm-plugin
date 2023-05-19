@@ -12,7 +12,7 @@
   "paths": {
     "/relevant-info": {
       "post": {
-        "summary": "Ask a question to the podcast chatbot",
+        "summary": "Ask a question to the podcast chatbot and get relevant info from the MFM podcast",
         "operationId": "askPodcastChatbot",
         "requestBody": {
           "description": "The question to ask",
