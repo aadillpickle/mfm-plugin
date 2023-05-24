@@ -68,8 +68,8 @@ async def openapi_spec():
     
 @app.get("/logo.png")
 async def plugin_logo():
-    filename = 'logo.png'
-    return await quart.send_file(filename, mimetype='image/png')
+    filename = 'askmfm.gif'
+    return await quart.send_file(filename, mimetype='image/gif')
 
 @app.get("/legal")
 async def legal():
