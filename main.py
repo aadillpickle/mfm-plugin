@@ -50,6 +50,7 @@ def operand_search_relevant_info(question):
 
 @app.route('/', methods=['GET'])
 async def hello():
+    posthog.capture("main pageview")
     return await render_template('index.html')
 
 @app.get("/.well-known/ai-plugin.json")
