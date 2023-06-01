@@ -1,32 +1,25 @@
 import os
 from langchain.vectorstores import Chroma
 from langchain.embeddings.openai import OpenAIEmbeddings
+
 from dotenv import load_dotenv
 
 load_dotenv()
-
 persist_directory = os.path.join(os.getcwd(), "db")
-
-# create the embeddings
 embeddings = OpenAIEmbeddings()
 
-db = Chroma(persist_directory=persist_directory, embedding_function=embeddings) # Load the vector store
+db = Chroma(persist_directory=persist_directory, embedding_function=embeddings)
 
-def search_relevant_info(question):
+def get_relevant_info_from_question(query):
     relevant_info = []
-    docs = db.similarity_search_with_score(question, k=10)
-    for doc, score in docs:
-        if score > 0.2:
-            relevant_info.append({
-                "snippet": doc.page_content[:600],
-                "podcast_title": doc.metadata['source'],
-                "link": doc.metadata['link']
+    docs = db.similarity_search_with_score(query, k=5)
+
+    for doc in docs:
+        print(doc)
+        print(doc[0])
+        relevant_info.append({
+                "snippet": doc[0].page_content,
+                "podcast_title": doc[0].metadata["title"],
+                "link": doc[0].metadata["description"] 
             })
     return relevant_info
-docs = db.similarity_search_with_score("investing", k=10)
-
-# Print the results
-for doc, score in docs:
-    print(f"Page {doc.metadata['page']}: {doc.page_content[:300]}")
-    print(f"Score: {score}")
-    print("-----------------------------------------")
