@@ -1,3 +1,2 @@
-db/**/* filter=lfs diff=lfs merge=lfs -text
 db/chroma-embeddings.parquet filter=lfs diff=lfs merge=lfs -text
 db/index/index_bae07ad0-8dce-4318-af20-86f02709d307.bin filter=lfs diff=lfs merge=lfs -text
