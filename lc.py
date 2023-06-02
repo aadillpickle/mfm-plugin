@@ -15,8 +15,6 @@ def get_relevant_info_from_question(query):
     docs = db.similarity_search_with_score(query, k=5)
 
     for doc in docs:
-        print(doc)
-        print(doc[0])
         relevant_info.append({
                 "snippet": doc[0].page_content,
                 "podcast_title": doc[0].metadata["title"],
