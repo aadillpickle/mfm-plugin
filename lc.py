@@ -14,7 +14,7 @@ pinecone.init(
 )
 
 embeddings = OpenAIEmbeddings()
-index_name = "mfm-embddings"
+index_name = os.getenv("PINECONE_INDEX_NAME")
 
 docsearch = Pinecone.from_existing_index(index_name, embeddings)
 
